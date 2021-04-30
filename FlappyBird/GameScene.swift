@@ -32,7 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         canRestart = true
         
         // setup physics
-        self.physicsWorld.gravity = CGVector( dx: 0.0, dy: -5.0 )
+        self.physicsWorld.gravity = CGVector( dx: 0.0, dy: -9.81 )
         self.physicsWorld.contactDelegate = self
         
         // setup background color
@@ -104,7 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let birdTexture2 = SKTexture(imageNamed: "bird-02")
         birdTexture2.filteringMode = .nearest
         
-        let anim = SKAction.animate(with: [birdTexture1, birdTexture2], timePerFrame: 0.2)
+        let anim = SKAction.animate(with: [birdTexture1, birdTexture2], timePerFrame: 0.1)
         let flap = SKAction.repeatForever(anim)
         
         bird = SKSpriteNode(texture: birdTexture1)
@@ -185,7 +185,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     func resetScene (){
         // Move bird to original position and reset velocity
-        bird.position = CGPoint(x: self.frame.size.width / 2.5, y: self.frame.midY)
+        bird.position = CGPoint(x: self.frame.size.width / 2.5, y: self.frame.midY + 250)
         bird.physicsBody?.velocity = CGVector( dx: 0, dy: 0 )
         bird.physicsBody?.collisionBitMask = worldCategory | pipeCategory
         bird.speed = 1.0
